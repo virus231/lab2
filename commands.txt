@@ -1,0 +1,21 @@
+aws ec2 create-vpc --cidr-block 10.0.0.0/16
+
+aws ec2 create-subnet --vpc-id vpc-04b5e15f73909da36  --cidr-block 10.0.0.0/24
+aws ec2 create-subnet --vpc-id vpc-04b5e15f73909da36  --cidr-block 10.0.1.0/24
+
+aws ec2 create-internet-gateway
+aws ec2 attach-internet-gateway --vpc-id vpc-04b5e15f73909da36  --internet-gateway-id igw-003aa1fb784eb41f7
+aws ec2 create-route-table --vpc-id vpc-021c1b32743d21b14
+
+aws ec2 create-route --route-table-id rtb-05f53dd88161ba2a8  --destination-cidr-block 0.0.0.0/0 --gateway-id igw-003aa1fb784eb41f7
+
+aws ec2 associate-route-table  --subnet-id subnet-08b3da9d5ab173058 --route-table-id rtb-05f53dd88161ba2a8
+
+aws ec2 create-key-pair --key-name Virus-Key --query 'KeyMaterial' --output text > virus-key.pem
+
+
+
+
+
+
+
